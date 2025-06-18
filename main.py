@@ -7,7 +7,7 @@ from datetime import datetime
 def main():
     driver = get_driver()
     try:
-        query = "mens t-shirts"
+        query = "womens jwellery"
         links = get_product_links(driver, query, limit=10)
         data = [parse_product_page(driver, link) for link in links]
         scrape_date = datetime.today().strftime('%Y-%m-%d')
