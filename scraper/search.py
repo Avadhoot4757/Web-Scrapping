@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 def get_product_links(driver, query, limit=10):
-    url = f"https://www.amazon.in/s?k={query.replace(' ', '+')}"
+    url = f"https://www.amazon.in/s?k={query.replace('-', '+')}"
     driver.get(url)
     elements = driver.find_elements(By.XPATH, '//a[@class="a-link-normal s-no-outline"]')
     
