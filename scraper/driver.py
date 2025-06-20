@@ -10,4 +10,3 @@ def get_driver():
     service = Service('/home/avadhoot/arealis/chromedriver-linux64/chromedriver')
     driver = webdriver.Chrome(service=service, options=options)
     return driver
-
