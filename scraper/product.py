@@ -54,13 +54,13 @@ def parse_product_page(driver, url):
         "flipkart": {
             "title": (By.CLASS_NAME, "VU-ZEz"),
             "brand": (By.CLASS_NAME, "mEh187"),
-            "size": 'div._1J5L2',
-            "color": 'div._2CxnI3',
+            "size": (By.CLASS_NAME, "hSEbzK"),
+            "color": (By.CLASS_NAME, "hSEbzK"),
             "availability": (By.CLASS_NAME, "_1r1VYa"),
             "delivery": (By.CLASS_NAME, "Y8v7Fl"),
             "seller": (By.ID , "sellerName"),
-            "price": (By.CLASS_NAME, "Nx9bqj CxhGGd"),
-            "rating": (By.CLASS_NAME, "XQDdHH _1Quie7"),
+            "price": (By.CLASS_NAME, "CxhGGd"),
+            "rating": (By.CLASS_NAME, "_6er70b"),
             "rating_count": [(By.CLASS_NAME, "Wphh3N")]
         },
         "tatacliq": {
@@ -81,22 +81,50 @@ def parse_product_page(driver, url):
     platform = next((p for p in selectors if p in url), "amazon")
     s = selectors[platform]
 
-    try:
-        size_ul = driver.find_element(By.CSS_SELECTOR, s["size"])
-        size_options = size_ul.find_elements(By.TAG_NAME, 'li')
-    except:
-        size_options = []
-
-    try:
-        color_ul = driver.find_element(By.CSS_SELECTOR, s["color"])
-        color_options = color_ul.find_elements(By.TAG_NAME, 'li')
-    except:
-        color_options = []
-
+    # Default values
+    size_options = []
+    color_options = []
+    
+    # Flipkart-specific logic for color (1st) and size (2nd) element with class 'hSEbzK'
+    if platform == "flipkart":
+        try:
+            containers = driver.find_elements(By.CLASS_NAME, "hSEbzK")
+            if len(containers) >= 2:
+                color_options = containers[0].find_elements(By.TAG_NAME, "li")
+                size_options = containers[1].find_elements(By.TAG_NAME, "li")
+        except:
+            color_options = []
+            size_options = []
+    else:
+        try:
+            size_ul = driver.find_element(By.CSS_SELECTOR, s["size"])
+            size_options = size_ul.find_elements(By.TAG_NAME, 'li')
+        except:
+            size_options = []
+    
+        try:
+            color_ul = driver.find_element(By.CSS_SELECTOR, s["color"])
+            color_options = color_ul.find_elements(By.TAG_NAME, 'li')
+        except:
+            color_options = []
+    
+    
+        try:
+            size_ul = driver.find_element(By.CSS_SELECTOR, s["size"])
+            size_options = size_ul.find_elements(By.TAG_NAME, 'li')
+        except:
+            size_options = []
+    
+        try:
+            color_ul = driver.find_element(By.CSS_SELECTOR, s["color"])
+            color_options = color_ul.find_elements(By.TAG_NAME, 'li')
+        except:
+            color_options = []
+    
     rating_count = safe_find_any(s["rating_count"])
-
+    
     print(f"Scraping {safe_find(*s['title'])} from {platform}")
-
+    
     return {
         "URL": url,
         "Title": safe_find(*s["title"]),

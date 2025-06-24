@@ -29,7 +29,7 @@ def main(queries, platforms, n):
         driver.quit()
 
 if __name__ == "__main__":
-    queries = ["womens jewellery", "mens watches", "kids shoes"]
-    platforms = ["amazon", "flipkart"]
-    n = 10
+    queries = ["womens leggings"]
+    platforms = ["flipkart"]
+    n = 75
     main(queries, platforms, n)
