@@ -39,18 +39,6 @@ def parse_product_page(driver, url):
             "rating": (By.ID, "acrPopover"),
             "rating_count": [(By.ID, "acrCustomerReviewText")]
         },
-        "myntra": {
-            "title": (By.CLASS_NAME, "pdp-title"),
-            "brand": (By.CLASS_NAME, "pdp-brand"),
-            "size": 'div.size-buttons-size-container',
-            "color": 'div.color-picker-container',
-            "availability": (By.CLASS_NAME, "pdp-availability"),
-            "delivery": (By.CLASS_NAME, "pdp-delivery"),
-            "seller": (By.CLASS_NAME, "pdp-seller-info"),
-            "price": (By.CLASS_NAME, "pdp-price"),
-            "rating": (By.CLASS_NAME, "rating-average"),
-            "rating_count": [(By.CLASS_NAME, "rating-count")]
-        },
         "flipkart": {
             "title": (By.CLASS_NAME, "VU-ZEz"),
             "brand": (By.CLASS_NAME, "mEh187"),
@@ -62,18 +50,6 @@ def parse_product_page(driver, url):
             "price": (By.CLASS_NAME, "CxhGGd"),
             "rating": (By.CLASS_NAME, "_6er70b"),
             "rating_count": [(By.CLASS_NAME, "Wphh3N")]
-        },
-        "tatacliq": {
-            "title": (By.CLASS_NAME, "ProductDetails__productTitle"),
-            "brand": (By.CLASS_NAME, "ProductDetails__brandName"),
-            "size": 'div.size__options',
-            "color": 'div.color__options',
-            "availability": (By.CLASS_NAME, "ProductDetails__availability"),
-            "delivery": (By.CLASS_NAME, "ProductDetails__delivery"),
-            "seller": (By.CLASS_NAME, "ProductDetails__seller"),
-            "price": (By.CLASS_NAME, "ProductDetails__price"),
-            "rating": (By.CLASS_NAME, "ProductDetails__rating"),
-            "rating_count": [(By.CLASS_NAME, "ProductDetails__ratingCount")]
         }
     }
 
